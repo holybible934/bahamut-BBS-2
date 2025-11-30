@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.plugin.compose'
 }
 
 android {
@@ -32,6 +33,11 @@ android {
     buildFeatures {
         buildConfig true
         viewBinding true
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = '2.0.0'
     }
     buildToolsVersion '35.0.0'
     ndkVersion '28.0.12674087 rc2'
@@ -40,33 +46,52 @@ android {
 dependencies {
     implementation 'androidx.core:core-ktx:1.17.0'
     implementation 'androidx.appcompat:appcompat:1.7.1'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.9.3'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.9.3'
-    implementation 'androidx.activity:activity-ktx:1.10.1'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.9.6'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.9.6'
 
     // for url head
     implementation 'org.jsoup:jsoup:1.21.2'
     // for image loading
-    implementation 'com.github.bumptech.glide:glide:5.0.4'
+    implementation 'com.github.bumptech.glide:glide:5.0.5'
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
 
     // drawer
     implementation 'androidx.drawerlayout:drawerlayout:1.2.0'
     // gson
-    implementation 'com.google.code.gson:gson:2.13.1'
+    implementation 'com.google.code.gson:gson:2.13.2'
 
     // billing
-    implementation 'com.android.billingclient:billing:8.0.0'
-    implementation 'com.google.android.play:integrity:1.5.0'
+    implementation 'com.android.billingclient:billing:8.1.0'
+    implementation 'com.google.android.play:integrity:1.6.0'
 
     // define a BOM and its version
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
     // okhttp3
-    implementation "com.squareup.okhttp3:okhttp:5.1.0"
+    implementation "com.squareup.okhttp3:okhttp:5.3.2"
     implementation 'com.google.android.material:material:1.13.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
 
     // 調色盤
     implementation 'com.github.skydoves:colorpickerview:2.3.0'
+
+    // Jetpack Compose Dependencies
+    def composeBom = platform('androidx.compose:compose-bom:2025.11.01') // Check for the latest version
+    implementation composeBom
+    androidTestImplementation composeBom
+
+    // Material Design
+    implementation 'androidx.compose.material:material-android:1.9.5'
+    implementation 'androidx.compose.material:material-icons-core:1.7.8'
+
+    // UI tools
+    implementation 'androidx.compose.ui:ui'
+    implementation 'androidx.compose.ui:ui-tooling-preview'
+    debugImplementation 'androidx.compose.ui:ui-tooling'
+
+    // For observing LiveData or StateFlow
+    implementation 'androidx.compose.runtime:runtime-livedata'
+
+    // For Activity integration
+    implementation 'androidx.activity:activity-compose:1.12.0' // Version should be compatible
 }
